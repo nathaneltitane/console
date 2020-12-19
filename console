@@ -570,6 +570,6 @@ console.id.user () {
 }
 
 console.clear () {
-	console.wait 1
+	console.wait 2
 	clear
 }
