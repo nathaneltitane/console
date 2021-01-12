@@ -180,7 +180,7 @@ console.ipt () {
 
 console.wait () {
 	wait="${1}"
-	
+
 	# wait in seconds
 
 	[ -z "${debug}" ] && sleep "${wait}" || sleep 0
@@ -192,16 +192,16 @@ console.wait () {
 console.countdown () {
 	message="${1}"
 	seconds="${2}"
-	
+
 	shift
 
 	while [ "${seconds}" -gt 0 ]
 	do
 		echo -e "\r${marker_wrn} ${message} [ ${red}$((seconds--))${reset} ] seconds...\c"
-		
+
 		sleep 1
 	done
-	
+
 	# additional 'echo' required due to carriage return
 
 	echo
@@ -225,12 +225,12 @@ console.progress () {
 	while [ -d /proc/"${PID}" ]
 	do
 		echo -ne "\r${before} \b${spinner:i++%${#spinner}:1} ${after} ${message}\c "
-		
+
 		sleep 0.175
 	done
-	
+
 	# additional 'echo' required due to carriage return
-	
+
 	echo
 }
 
@@ -240,22 +240,22 @@ console.progress () {
 
 console.directory () {
 	path="${1}"
-	
+
 	# ${2} - array
-	
+
 	list=(${@:2})
-	
+
 	for directory in ${list[@]}
 	do
 		console.add "Creating directory [ ${directory} ]."
 		echo
-	
+
 		# create directory and set permissions
-	
+
 		[ ! -d "${path}"/"${directory}" ] && mkdir -p "${path}"/"${directory}" || :
-		
+
 		# set ownership
-		
+
 		chown "${uid}":"${gid}" -R "${path}"/"${directory}"
 	done
 }
@@ -265,21 +265,21 @@ console.directory () {
 console.download () {
 	source="${1}"
 	path="${2}"
-	
+
 	# "${3}" - array
-	
+
 	list=(${@:3}) 
-	
+
 	console.fwd "Loading..."
 	echo
-	
+
 	for file in ${list[@]}
 	do
 		curl -sL "${source}/${file}" > "${path}"/"${file}"
-	
+
 		console.dwl "Downloading [ ${file} ]."
 		echo
-	
+
 		chmod a+rx "${path}"/"${file}"
 
 	done
@@ -300,12 +300,12 @@ console.get () {
 	source="${1}"
 	file="${2}"
 	path="${3}"
-	
+
 	console.dwl "Downloading [ ${file} ]."
 	echo
-	
+
 	curl -sL "${source}/${file}" > "${path}"/"${file}"
-	
+
 	chmod a+rx "${path}"/"${file}"
 }
 
@@ -313,7 +313,7 @@ console.get () {
 
 console.silence () {
 	command="$@"
-	
+
 	"${SHELL}" -c "${command}" >> "${PREFIX}"/var/log/"${script}"-"${stamp}".log 2>&1
 }
 
@@ -321,18 +321,19 @@ console.silence () {
 
 console.input () {
 	list=($@)
-	
+
 	for value in "${list[@]}"
 	do
 		label=${value^}
 		prompt="$(echo ${label} | sed 's/_/ /'): "
-		
+
 		console.ipt "${prompt}"
+
 		[[ "${value}" = *password* ]] && read -s input || read input
 		echo
-		
+
 		# prevent empty input
-		
+
 		while true
 		do
 			if [ -z "${input}" ]
@@ -341,15 +342,16 @@ console.input () {
 				console.err "${label} cannot be empty:"
 				console.wrn "${label} is required for successful setup."
 				echo
-			
+
 				console.ipt "${prompt}"
+
 				[[ "${value}" = *password* ]] && read -s input || read input
-	
+
 			else
 				break
 			fi
 		done
-		
+
 		console_rtn+=("${value}=${input}")
 	done
 }
@@ -376,52 +378,52 @@ console.empty () {
 
 console.install () {
 	export DEBIAN_FRONTEND=noninteractive
-	
+
 	list=($@)
-	
+
 	command_install="apt-get install --no-install-recommends"
 	command_clean="apt-get clean"
-	
+
 	console.inf "Installing required packages."
 	echo
-	
+
 	for package in ${list[@]}
 	do
 		if [ -z "$(command -v ${package})" ]
 		then
 			console.wrn "Required package '${package}' not present."
 			echo
-	
+
 			# use 'apt-get install --no-install-recommends' to keep bloat to a minimum
-			
+
 			console.silence "echo yes | ${command_install} ${package}" &
-			
+
 			console.progress "Installing [ ${package} ]..."
 			echo
 		else
 			console.scs "Required package '${package}' already installed."
 			echo
-			
+
 			console.fwd "Continuing..."
 			echo
-	
+
 			:
 		fi
 	done
-	
+
 	# cleanup
-	
+
 	console.silence "${command_clean}" &
-	
+
 	console.progress "Cleaning..."
 	echo
 }
 
 console.install-local () {
 	export DEBIAN_FRONTEND=noninteractive
-	
+
 	directory="$1"
-	
+
 	if [ -d "${directory}" ]
 	then
 		for package in "${directory}"/*.deb
@@ -431,7 +433,7 @@ console.install-local () {
 	else
 		console.wrn "No local packages to install."
 		echo
-		
+
 		console.fwd " Continuing..."
 		echo
 	fi
@@ -441,14 +443,14 @@ console.install-local () {
 
 console.update () {
 	export DEBIAN_FRONTEND=noninteractive
-	
+
 	command_update="apt-get update"
-	
+
 	console.inf "Updating repository and package information."
 	echo
-	
+
 	console.silence "${command_update}" &
-	
+
 	console.progress "Updating..."
 	echo
 }
@@ -457,14 +459,14 @@ console.update () {
 
 console.upgrade () {
 	export DEBIAN_FRONTEND=noninteractive
-	
+
 	command_upgrade="apt-get upgrade"
-	
+
 	console.inf "Upgrading installed packages."
 	echo
-	
+
 	console.silence "echo yes | ${command_upgrade}" &
-	
+
 	console.progress "Upgrading..."
 	echo
 }
