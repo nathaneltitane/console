@@ -471,41 +471,41 @@ console.upgrade () {
 
 console.purge () {
 	export DEBIAN_FRONTEND=noninteractive
-	
+
 	list=($@)
-	
+
 	command_purge="apt-get purge"
 	command_clean="apt-get autoremove"
-	
+
 	console.inf "Purging selected packages packages."
 	echo
-	
+
 	for package in ${list[@]}
 	do
 		if [ ! -z "$(command -v ${package})" ]
 		then
 			console.wrn "Selected package '${package}' now purging.."
 			echo
-	
+
 			console.silence "echo yes | ${command_purge} ${package}" &
-			
+
 			console.progress "Purging [ ${package} ]..."
 			echo
 		else
 			console.scs "Selected package '${package}' not installed."
 			echo
-			
+
 			console.fwd "Continuing..."
 			echo
-	
+
 			:
 		fi
 	done
-	
+
 	# cleanup
-	
+
 	console.silence "${command_clean}" &
-	
+
 	console.progress "Cleaning..."
 	echo
 }
@@ -542,7 +542,7 @@ console.dialog () {
 	if [[ -z $(command -v zenity) ]]
 	then
 		dialog=$(k_dialog)
-		
+
 	elif [[ -z $(command -v kdialog) ]]
 	then
 		dialog=$(g_dialog)
@@ -559,7 +559,7 @@ console.dialog () {
 
 console.trap () {
 	name="${1}"
-	
+
 	trap=$(mktemp /tmp/${name}.XXXXXX)
 	trap 'rm -rf "${trap}"' EXIT
 }
@@ -572,4 +572,12 @@ console.id.user () {
 console.clear () {
 	console.wait 2
 	clear
+}
+
+console.title () {
+	title="${1}"
+	description="${2}"
+	version="${3}"
+
+	console.msg "[ $title - $description [ Version $version ] ]"
 }
