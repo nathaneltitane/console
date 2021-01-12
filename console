@@ -582,4 +582,5 @@ console.title () {
 	version="${3}"
 
 	console.msg "[ $title - $description [ Version $version ] ]"
+	echo
 }
