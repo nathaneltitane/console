@@ -276,8 +276,8 @@ console.download () {
 	if [ -z "${list}" ]
 	then
 		source="${1}"
-		file="${2}"
-		path="${3}"
+		path="${2}"
+		file="${3}"
 		
 		curl -sL "${source}/${file}" > "${path}"/"${file}"
 	
@@ -291,8 +291,9 @@ console.download () {
 			echo
 	
 			chmod a+rx "${path}"/"${file}"
-	
 		done
+		
+		list=()
 	fi
 }
 
