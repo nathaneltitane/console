@@ -260,13 +260,24 @@ console.directory () {
 	done
 }
 
+# get
+
+console.gt () {
+	console.dwl "Downloading [ ${file} ]."
+	echo
+	
+	curl -sL "${source}/${file}" > "${path}"/"${file}"
+	
+	chmod a+rx "${path}"/"${file}"
+}
+
 # download
 
 console.download () {
 	source="${1}"
 	path="${2}"
 
-	# "${3}" - array
+	# "${3}" - array - file list
 
 	list=(${@:3}) 
 
@@ -277,20 +288,17 @@ console.download () {
 	then
 		source="${1}"
 		path="${2}"
-		file="${3}"
 		
-		curl -sL "${source}/${file}" > "${path}"/"${file}"
-	
-		chmod a+rx "${path}"/"${file}"
+		# "${3}" - variable - file
+		
+		file="${3}"
+
+		console.get
+
 	else
 		for file in ${list[@]}
 		do
-			curl -sL "${source}/${file}" > "${path}"/"${file}"
-	
-			console.dwl "Downloading [ ${file} ]."
-			echo
-	
-			chmod a+rx "${path}"/"${file}"
+			console.get
 		done
 		
 		list=()
