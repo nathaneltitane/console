@@ -272,17 +272,28 @@ console.download () {
 
 	console.fwd "Loading..."
 	echo
-
-	for file in ${list[@]}
-	do
+	
+	if [ -z "${list}" ]
+	then
+		source="${1}"
+		file="${2}"
+		path="${3}"
+		
 		curl -sL "${source}/${file}" > "${path}"/"${file}"
-
-		console.dwl "Downloading [ ${file} ]."
-		echo
-
+	
 		chmod a+rx "${path}"/"${file}"
-
-	done
+	else
+		for file in ${list[@]}
+		do
+			curl -sL "${source}/${file}" > "${path}"/"${file}"
+	
+			console.dwl "Downloading [ ${file} ]."
+			echo
+	
+			chmod a+rx "${path}"/"${file}"
+	
+		done
+	fi
 }
 
 # upload
@@ -292,21 +303,6 @@ console.upload () {
 	console.upl "Uploading [ ${file} ]."
 	echo
 
-}
-
-# get
-
-console.get () {
-	source="${1}"
-	file="${2}"
-	path="${3}"
-
-	console.dwl "Downloading [ ${file} ]."
-	echo
-
-	curl -sL "${source}/${file}" > "${path}"/"${file}"
-
-	chmod a+rx "${path}"/"${file}"
 }
 
 # silence
