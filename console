@@ -589,3 +589,7 @@ console.title () {
 	console.msg "[ $title - $description [ Version $version ] ]"
 	echo
 }
+
+console.run () {
+	exit
+}
