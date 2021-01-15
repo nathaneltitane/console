@@ -591,5 +591,13 @@ console.title () {
 }
 
 console.run () {
-	exit
+	# initial prompt clear
+	
+	console.clear
+
+	# run script
+	
+	"${SHELL}"
+
+	console.clear
 }
