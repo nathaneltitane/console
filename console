@@ -8,6 +8,7 @@
 
 script=$(basename -- "${BASH_SOURCE[0]}")
 
+shell=$(echo ${SHELL})
 stamp=$(date +"%m-%d-%Y-%H-%M-%S")
 
 # colors #
@@ -591,13 +592,14 @@ console.title () {
 }
 
 console.run () {
+	
 	# initial prompt clear
 	
 	console.clear
 
 	# run script
 	
-	"${SHELL}"
+	"${shell}" "${@}"
 
 	console.clear
 }
