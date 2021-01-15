@@ -263,7 +263,7 @@ console.directory () {
 
 # get
 
-console.gt () {
+console.get () {
 	console.dwl "Downloading [ ${file} ]."
 	echo
 	
@@ -275,6 +275,13 @@ console.gt () {
 # download
 
 console.download () {
+	source="${1}"
+	path="${2}"
+
+	# "${3}" - array - file list
+
+	list=(${@:3}) 
+
 	console.fwd "Loading..."
 	echo
 	
@@ -290,13 +297,6 @@ console.download () {
 		console.get
 
 	else
-		source="${1}"
-		path="${2}"
-	
-		# "${3}" - array - file list
-	
-		list=(${@:3}) 
-	
 		for file in ${list[@]}
 		do
 			console.get
@@ -600,6 +600,6 @@ console.run () {
 	# run script
 	
 	"${shell}" "${@}"
-
+	
 	console.clear
 }
