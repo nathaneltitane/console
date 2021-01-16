@@ -591,6 +591,7 @@ console.title () {
 }
 
 console.run () {
+	command="$@"
 	
 	# initial prompt clear
 	
@@ -598,7 +599,9 @@ console.run () {
 
 	# run script
 	
-	"${SHELL}" "${@}"
+	"${SHELL}" "${command}"
+	
+	# post-command clear
 	
 	console.clear
 }
