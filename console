@@ -2,11 +2,17 @@
 
 # dependencies #
 
-# usage #
-
-# variables #
+# script #
 
 script=$(basename -- "${BASH_SOURCE[0]}")
+
+# usage #
+
+# version #
+
+version="02-16-2021"
+
+# variables #
 
 stamp=$(date +"%m-%d-%Y-%H-%M-%S")
 
@@ -481,8 +487,8 @@ console.purge () {
 
 	list=($@)
 
-	command_purge="apt-get purge"
-	command_clean="apt-get autoremove"
+	command_purge="sudo apt-get purge"
+	command_clean="sudo apt-get autoremove"
 
 	console.inf "Purging selected packages packages."
 	echo
