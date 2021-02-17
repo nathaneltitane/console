@@ -386,7 +386,7 @@ console.install () {
 
 	list=($@)
 
-	command_install="apt-get install --no-install-recommends"
+	command_install="sudo apt-get install --no-install-recommends"
 	command_clean="apt-get clean"
 
 	console.inf "Installing required packages."
@@ -399,7 +399,7 @@ console.install () {
 			console.wrn "Required package '${package}' not present."
 			echo
 
-			# use 'apt-get install --no-install-recommends' to keep bloat to a minimum
+			# use '--no-install-recommends' option to keep bloat to a minimum
 
 			console.silence "echo yes | ${command_install} ${package}" &
 
