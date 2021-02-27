@@ -80,7 +80,8 @@ marker_no='[ ⨉ ]'
 
 console.prompt () {
 	IFS=' '
-	
+	input="${@}"
+
 	[ -z "${1}" ] && return 1
 
 	padding_character="${2}"
@@ -106,7 +107,7 @@ console.prompt () {
 		string_2=$(printf "%*.*s" 0 $((padding_count - ${#prompt} - ${#answer} )) "$padding_string")
 		string_3=$(printf "%s\n" ": ${answer}")
 
-	done
+	done <<< "${input}"
 
 	# return values as padded prompt string
 
