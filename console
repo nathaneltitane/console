@@ -613,16 +613,16 @@ console.run () {
 }
 
 console.prompt () {
-	padded_string=$(printf '%0.1s' "."{1..80})
+	padding_count=57
+	padding_character="${2}"
+	padded_string=$(printf '%0.1s' "${padding_character}"{1..80})
 
-	padding=57
-
-	answer="${2}"
+	answer="${3}"
 
 	for prompt in "${1}"
 	do
 		printf '%s' "${prompt}: "
-		printf '%*.*s' 0 $((padding - ${#prompt} - ${#answer} )) "$padded_string"
+		printf '%*.*s' 0 $((padding_count - ${#prompt} - ${#answer} )) "$padded_string"
 		printf '%s\n' " ${answer}"
 	done
 }
