@@ -76,6 +76,30 @@ marker_usr='[ • ]'
 marker_yes='[ ✓ ]'
 marker_no='[ ⨉ ]'
 
+# prompt #
+
+console.prompt () {
+	[ -z "${1}" ] && exit 1
+
+	padding_character="${2}"
+	answer="${3}"
+
+	padding_count=79
+	padding_string=$(printf "%0.1s" "${padding_character}"{1..79}})
+
+	for prompt in "${1}"
+	do
+		string_1=$(printf "%s" "${prompt}")
+
+		[ -z "${answer}" ] && printf "\n" && break
+
+		string_2=$(printf "%*.*s" 0 $((padding_count - ${#prompt} - ${#answer} )) "$padding_string")
+		string_3=$(printf "%s\n" ": ${answer}")
+	done
+
+	console_str+=("${string_1}${string_2}${string_3}")
+}
+
 # highlights #
 
 console.red () {
@@ -560,7 +584,7 @@ console.dialog () {
 	then
 		dialog=$(g_dialog)
 	else
-		console.err "No dialog binary present on system."
+_		console.err "No dialog binary present on system."
 		console.inf "This utility must be run using the 'directory' option."
 		echo
 		console.fwd "Exiting..."
@@ -610,26 +634,4 @@ console.run () {
 	# post-command clear
 	
 	console.clear
-}
-
-console.prompt () {
-	[ -z "${1}" ] && exit 1
-
-	padding_character="${2}"
-	answer="${3}"
-
-	padding_count=79
-	padding_string=$(printf "%0.1s" "${padding_character}"{1..79}})
-
-	for prompt in "${1}"
-	do
-		printf "%s" "${prompt}"
-
-		[ -z "${padding_character}" ] && padding_character="."
-
-		[ -z "${answer}" ] && printf "\n" && break
-
-		printf "%*.*s" 0 $((padding_count - ${#prompt} - ${#answer} )) "$padding_string"
-		printf "%s\n" ": ${answer}"
-done
 }
