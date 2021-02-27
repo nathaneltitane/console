@@ -79,6 +79,9 @@ marker_no='[ ⨉ ]'
 # prompt #
 
 console.prompt () {
+	unset padding_character
+	unset answer
+	
 	[ -z "${1}" ] && return 1
 
 	padding_character="${2}"
@@ -90,7 +93,8 @@ console.prompt () {
 	# parse input:
 	# typical formatting as "prompt" "padding character" "answer"
 
-	# initialize empty return array
+	# initialize empty return array:
+	# clears previous content input
 
 	console_rtn=()
 
@@ -288,7 +292,7 @@ console.err () {
 
 console.ipt () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 
 	echo -n "${magenta}${marker_add}" ${value}"${reset}"
 }
