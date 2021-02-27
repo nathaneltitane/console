@@ -621,8 +621,8 @@ console.prompt () {
 
 	for prompt in "${1}"
 	do
-		printf '%s' "${prompt}: "
+		printf '%s' "${prompt}"
 		printf '%*.*s' 0 $((padding_count - ${#prompt} - ${#answer} )) "$padded_string"
-		printf '%s\n' " ${answer}"
+		printf '%s\n' ": ${answer}"
 	done
 }
