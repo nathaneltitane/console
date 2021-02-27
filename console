@@ -113,32 +113,46 @@ IFS=' '
 # highlights #
 
 console.red () {
-	value=${@}
+	console.prompt $@
+	value=${console_rtn[@]}
+
 	echo -e "${red}"${value}"${reset}"
 }
 
 console.green () {
-	value=${@}
+	console.prompt $@
+	value=${console_rtn[@]}
+
 	echo -e "${green}"${value}"${reset}"
 }
 
 console.yellow () {
-	value=${@}
+console.prompt $@
+	value=${console_rtn[@]}
+
+	value=${console_rtn[@]}
+
 	echo -e "${yellow}"${value}"${reset}"
 }
 
 console.blue () {
-	value=${@}
+console.prompt $@
+	value=${console_rtn[@]}
+
 	echo -e "${blue}"${value}"${reset}"
 }
 
 console.magenta () {
-	value=${@}
+console.prompt $@
+	value=${console_rtn[@]}
+
 	echo -e "${magenta}"${value}"${reset}"
 }
 
 console.cyan () {
-	value=${@}
+	console.prompt $@
+	value=${console_rtn[@]}
+
 	echo -e "${cyan}"${value}"${reset}"
 }
 
@@ -146,115 +160,115 @@ console.cyan () {
 
 console.maru () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${green}${marker_maru}" ${value}"${reset}"
 }
 
 console.batsu () {
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	console.prompt $@
 	echo -e "${red}${marker_batsu}" ${value}"${reset}"
 }
 
 console.bako () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${white}${marker_bako}" ${value}"${reset}"
 }
 
 console.sankaku () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${cyan}${marker_sankaku}" ${value}"${reset}"
 }
 
 console.ask () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${magenta}${marker_ask}" ${value}"${reset}"
 }
 
 console.inf() {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${blue}${marker_inf}" ${value}"${reset}"
 }
 
 console.msg () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${cyan}${marker_msg}" ${value}"${reset}"
 }
 
 console.wrn () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${yellow}${marker_wrn}" ${value}"${reset}"
 }
 
 console.usr () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${magenta}${marker_usr}" ${value}"${reset}"
 }
 
 console.add () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${blue}${marker_add}" ${value}"${reset}"
 }
 
 console.rem () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${red}${marker_rem}" ${value}"${reset}"
 }
 
 console.fwd () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${white}${marker_fwd}" ${value}"${reset}"
 }
 
 console.rev () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${white}${marker_rev}" ${value}"${reset}"
 }
 
 console.stp () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${white}${marker_stp}" ${value}"${reset}"
 }
 
 console.dwl () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${magenta}${marker_bot}" ${value}"${reset}"
 }
 
 console.upl () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${magenta}${marker_top}" ${value}"${reset}"
 }
 
 console.scs () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${green}${marker_yes}" ${value}"${reset}"
 }
 
 console.err () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -e "${red}${marker_no}" ${value}"${reset}"
 }
 
 console.ipt () {
 	console.prompt $@
-	value=${console_rtn[0]}
+	value=${console_rtn[@]}
 	echo -n "${magenta}${marker_add}" ${value}"${reset}"
 }
 
