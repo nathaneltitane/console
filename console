@@ -288,7 +288,7 @@ console.err () {
 
 console.ipt () {
 	console.prompt $@
-	value=${console_rtn[@]}
+	value=${console_rtn[0]}
 
 	echo -n "${magenta}${marker_add}" ${value}"${reset}"
 }
