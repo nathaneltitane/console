@@ -111,37 +111,32 @@ console.prompt () {
 # highlights #
 
 console.red () {
-	console.prompt $@
-	value=${console_rtn[0]}
+	value=${@}
 	echo -e "${red}"${value}"${reset}"
 }
 
 console.green () {
-	console.prompt $@
-	value=${console_rtn[0]}
+	value=${@}
 	echo -e "${green}"${value}"${reset}"
 }
 
 console.yellow () {
-	console.prompt $@
-	value=${console_rtn[0]}
+	value=${@}
 	echo -e "${yellow}"${value}"${reset}"
 }
 
 console.blue () {
-	console.prompt $@
-	value=${console_rtn[0]}
+	value=${@}
 	echo -e "${blue}"${value}"${reset}"
 }
 
 console.magenta () {
-	console.prompt $@
-	value=${console_rtn[0]}
+	value=${@}
 	echo -e "${magenta}"${value}"${reset}"
 }
 
 console.cyan () {
-	value=${console_rtn[0]}
+	value=${@}
 	echo -e "${cyan}"${value}"${reset}"
 }
 
