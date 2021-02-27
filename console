@@ -130,23 +130,21 @@ console.green () {
 }
 
 console.yellow () {
-console.prompt $@
-	value=${console_rtn[@]}
-
+	console.prompt $@
 	value=${console_rtn[@]}
 
 	echo -e "${yellow}"${value}"${reset}"
 }
 
 console.blue () {
-console.prompt $@
+	console.prompt $@
 	value=${console_rtn[@]}
 
 	echo -e "${blue}"${value}"${reset}"
 }
 
 console.magenta () {
-console.prompt $@
+	console.prompt $@
 	value=${console_rtn[@]}
 
 	echo -e "${magenta}"${value}"${reset}"
@@ -288,7 +286,7 @@ console.err () {
 }
 
 console.ipt () {
-	console.prompt $@
+	console.prompt "$@"
 	value=${console_rtn[@]}
 
 	echo -n "${magenta}${marker_add}" ${value}"${reset}"
