@@ -79,11 +79,7 @@ marker_no='[ ⨉ ]'
 # prompt #
 
 console.prompt () {
-	input="$@"
-
-	IFS=' '
-
-	[ -z "${1}" ] && exit 1
+	[ -z "${1}" ] && return 1
 
 	padding_character="${2}"
 	answer="${3}"
@@ -103,119 +99,141 @@ console.prompt () {
 		string_2=$(printf "%*.*s" 0 $((padding_count - ${#prompt} - ${#answer} )) "$padding_string")
 		string_3=$(printf "%s\n" ": ${answer}")
 
-	done <<< "${input}"
-
-	# reset IFS
-
-	IFS=
+	done
 
 	# return values as padded prompt string
 
-	console_str+=("${string_1}${string_2}${string_3}")
+	console_rtn+=("${string_1}${string_2}${string_3}")
+
+	return 0
 }
 
 # highlights #
 
 console.red () {
-	echo -e "${red}"${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${red}"${console_rtn[0]}"${reset}"
 }
 
 console.green () {
-	echo -e "${green}"${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${green}"${console_rtn[0]}"${reset}"
 }
 
 console.yellow () {
-	echo -e "${yellow}"${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${yellow}"${console_rtn[0]}"${reset}"
 }
 
 console.blue () {
-	echo -e "${blue}"${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${blue}"${console_rtn[0]}"${reset}"
 }
 
 console.magenta () {
-	echo -e "${magenta}"${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${magenta}"${console_rtn[0]}"${reset}"
 }
 
 console.cyan () {
-	echo -e "${cyan}"${console_str[@]}"${reset}"
+	echo -e "${cyan}"${console_rtn[0]}"${reset}"
 }
 
 # prompts #
 
 console.maru () {
-	echo -e "${green}${marker_maru}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${green}${marker_maru}" ${console_rtn[0]}"${reset}"
 }
 
 console.batsu () {
-	echo -e "${red}${marker_batsu}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${red}${marker_batsu}" ${console_rtn[0]}"${reset}"
 }
 
 console.bako () {
-	echo -e "${white}${marker_bako}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${white}${marker_bako}" ${console_rtn[0]}"${reset}"
 }
 
 console.sankaku () {
-	echo -e "${cyan}${marker_sankaku}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${cyan}${marker_sankaku}" ${console_rtn[0]}"${reset}"
 }
 
 console.ask () {
-	echo -e "${magenta}${marker_ask}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${magenta}${marker_ask}" ${console_rtn[0]}"${reset}"
 }
 
 console.inf() {
-	echo -e "${blue}${marker_inf}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${blue}${marker_inf}" ${console_rtn[0]}"${reset}"
 }
 
 console.msg () {
-	echo -e "${cyan}${marker_msg}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${cyan}${marker_msg}" ${console_rtn[0]}"${reset}"
 }
 
 console.wrn () {
-	echo -e "${yellow}${marker_wrn}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${yellow}${marker_wrn}" ${console_rtn[0]}"${reset}"
 }
 
 console.usr () {
-	echo -e "${magenta}${marker_usr}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${magenta}${marker_usr}" ${console_rtn[0]}"${reset}"
 }
 
 console.add () {
-	echo -e "${blue}${marker_add}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${blue}${marker_add}" ${console_rtn[0]}"${reset}"
 }
 
 console.rem () {
-	echo -e "${red}${marker_rem}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${red}${marker_rem}" ${console_rtn[0]}"${reset}"
 }
 
 console.fwd () {
-	echo -e "${white}${marker_fwd}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${white}${marker_fwd}" ${console_rtn[0]}"${reset}"
 }
 
 console.rev () {
-	echo -e "${white}${marker_rev}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${white}${marker_rev}" ${console_rtn[0]}"${reset}"
 }
 
 console.stp () {
-	echo -e "${white}${marker_stp}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${white}${marker_stp}" ${console_rtn[0]}"${reset}"
 }
 
 console.dwl () {
-	echo -e "${magenta}${marker_bot}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${magenta}${marker_bot}" ${console_rtn[0]}"${reset}"
 }
 
 console.upl () {
-	echo -e "${magenta}${marker_top}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${magenta}${marker_top}" ${console_rtn[0]}"${reset}"
 }
 
 console.scs () {
-	echo -e "${green}${marker_yes}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${green}${marker_yes}" ${console_rtn[0]}"${reset}"
 }
 
 console.err () {
-	echo -e "${red}${marker_no}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -e "${red}${marker_no}" ${console_rtn[0]}"${reset}"
 }
 
 console.ipt () {
-	echo -n "${magenta}${marker_add}" ${console_str[@]}"${reset}"
+	console.prompt $@
+	echo -n "${magenta}${marker_add}" ${console_rtn[0]}"${reset}"
 }
 
 # triggers #
