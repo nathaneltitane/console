@@ -79,9 +79,6 @@ marker_no='[ ⨉ ]'
 # prompt #
 
 console.prompt () {
-	unset padding_character
-	unset answer
-	
 	[ -z "${1}" ] && return 1
 
 	padding_character="${2}"
