@@ -619,7 +619,7 @@ console.prompt () {
 
 	answer="${2}"
 
-	for prompt in "${@}"
+	for prompt in "${1}"
 	do
 		printf '%s' "${prompt}: "
 		printf '%*.*s' 0 $((padding - ${#prompt} - ${#answer} )) "$padded_string"
