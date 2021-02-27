@@ -381,7 +381,7 @@ console.directory () {
 # get
 
 console.get () {
-	console.dwl "Downloading [ ${file} ]."
+	console.dwl 'Downloading [ ${file} ].'
 	echo
 
 	curl -sL "${source}/${file}" > "${path}"/"${file}"
