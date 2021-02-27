@@ -79,6 +79,8 @@ marker_no='[ ⨉ ]'
 # prompt #
 
 console.prompt () {
+	IFS=' '
+	
 	[ -z "${1}" ] && return 1
 
 	padding_character="${2}"
