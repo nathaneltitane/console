@@ -79,56 +79,56 @@ marker_no='[ ⨉ ]'
 # prompt #
 
 console.prompt () {
-        # initialize empty string return array
+	# initialize empty string return array
 
-        console_str=()
+	console_str=()
 
-        prompt="${1}"
-        answer="${2}"
+	prompt="${1}"
+	answer="${2}"
 
-        # set defaults
+	# set defaults
 
-        # set padding line:
-        # 80 columns width - standard
+	# set padding line:
+	# 80 columns width - standard
 
-        padding="--------------------------------------------------------------------------------"
-        padding_character="/"
+	padding="--------------------------------------------------------------------------------"
+	padding_character="/"
 
-        # verify arguments
+	# verify arguments
 
-        [ -z "${1}" ] && return 1
+	[ -z "${1}" ] && return 1
 
-        [ $# -gt 2 ] && padding_character="${3}"
+	[ $# -gt 2 ] && padding_character="${3}"
 
-        # print first argument
+	# print first argument
 
-        string_1=$(echo -ne "${prompt}")
+	string_1=$(echo -ne "${prompt}")
 
-        console_str+=("${string_1}")
+	console_str+=("${string_1}")
 
-        # print newline if no other argument is present
+	# print newline if no other argument is present
 
-        [ $# -lt 2 ] && echo && return
+	[ $# -lt 2 ] && echo && return
 
-        # print other arguments as fixed width prompt if present
+	# print other arguments as fixed width prompt if present
 
-        # calculate padding width
+	# calculate padding width
 
-        padding_count=$(( ${#padding} - ${#prompt} - ${#answer} ))
+	padding_count=$(( ${#padding} - ${#prompt} - ${#answer} ))
 
-        # set new padding width
+	# set new padding width
 
-        padding=${padding:0:$padding_count}
+	padding=${padding:0:$padding_count}
 
-        # substitute padding character
+	# substitute padding character
 
-        padding="${padding//-/$padding_character}"
+	padding="${padding//-/$padding_character}"
 
-        string_2="${padding}"
+	string_2="${padding}"
 
-        string_3=$(echo -e "${answer}")
+	string_3=$(echo -e "${answer}")
 
-console_str+=("${string_2}" "${string_3}")
+	console_str+=("${string_2}" "${string_3}")
 }
 
 # highlights #
