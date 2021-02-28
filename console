@@ -113,7 +113,7 @@ console.prompt () {
 
 	string_2=$(printf "%*.*s" 0 $((padding_count - ${#prompt} - ${#answer} )) "$padding_string")
 
-	string_3=$(printf "%s\n" ": ${answer}")
+	string_3=$(printf "%s\n" "${answer}")
 
 	console_str+=("${string_2}${string_3}")
 }
