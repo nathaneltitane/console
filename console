@@ -81,6 +81,7 @@ marker_no='[ ⨉ ]'
 console.prompt () {
 	[ -z "${1}" ] && return 1
 
+	prompt="${1}"
 	padding_character="${2}"
 	answer="${3}"
 
@@ -95,16 +96,12 @@ console.prompt () {
 
 	console_rtn=()
 
-	for prompt in "${1}"
-	do
-		string_1=$(printf "%s" "${prompt}")
+	string_1=$(printf "%s" "${prompt}")
 
-		[ -z "${answer}" ] && printf "\n" && break
+	[ -z "${answer}" ] && printf "\n" && break
 
-		string_2=$(printf "%*.*s" 0 $((padding_count - ${#prompt} - ${#answer} )) "$padding_string")
-		string_3=$(printf "%s\n" ": ${answer}")
-
-	done
+	string_2=$(printf "%*.*s" 0 $((padding_count - ${#prompt} - ${#answer} )) "$padding_string")
+	string_3=$(printf "%s\n" ": ${answer}")
 
 	# return values as padded prompt string
 
