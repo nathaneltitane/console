@@ -188,7 +188,7 @@ console.ask () {
 }
 
 console.inf() {
-	console.prompt "$@"
+	console.prompt "${@}"
 	value="${console_str[@]}"
 
 	echo -e "${blue}${marker_inf} ${value}${reset}"
