@@ -10,7 +10,7 @@ script=$(basename -- "${BASH_SOURCE[0]}")
 
 # version #
 
-version="02-27-2021"
+version="02-28-2021"
 
 # variables #
 
@@ -79,7 +79,6 @@ marker_no='[ ⨉ ]'
 # prompt #
 
 console.prompt () {
-
 	# initialize empty string return array
 
 	console_str=()
