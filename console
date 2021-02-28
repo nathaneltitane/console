@@ -115,7 +115,7 @@ console.prompt () {
 
 	string_3=$(printf "%s\n" "${answer}")
 
-	console_str+=("${string_2}${string_3}")
+	console_str+=("${string_2}" "${string_3}")
 }
 
 # highlights #
