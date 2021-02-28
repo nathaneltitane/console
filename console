@@ -112,42 +112,42 @@ console.red () {
 	console.prompt "$@"
 	value="${console_str[@]}"
 
-	echo -e "${red}"${value}"${reset}"
+	echo -e "${red}${value}${reset}"
 }
 
 console.green () {
 	console.prompt "$@"
 	value="${console_str[@]}"
 
-	echo -e "${green}"${value}"${reset}"
+	echo -e "${green}${value}${reset}"
 }
 
 console.yellow () {
 	console.prompt "$@"
 	value="${console_str[@]}"
 
-	echo -e "${yellow}"${value}"${reset}"
+	echo -e "${yellow}${value}${reset}"
 }
 
 console.blue () {
 	console.prompt "$@"
 	value="${console_str[@]}"
 
-	echo -e "${blue}"${value}"${reset}"
+	echo -e "${blue}${value}${reset}"
 }
 
 console.magenta () {
 	console.prompt "$@"
 	value="${console_str[@]}"
 
-	echo -e "${magenta}"${value}"${reset}"
+	echo -e "${magenta}${value}${reset}"
 }
 
 console.cyan () {
 	console.prompt "$@"
 	value="${console_str[@]}"
 
-	echo -e "${cyan}"${value}"${reset}"
+	echo -e "${cyan}${value}${reset}"
 }
 
 # prompts #
