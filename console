@@ -93,7 +93,7 @@ console.prompt () {
 
 	string_1=$(printf "%s" "${prompt}")
 
-	console_str+=( "${string_1}" )
+	console_str+=("${string_1}")
 
 	[ $# -lt 2 ] && printf "\n" && return
 
@@ -103,7 +103,7 @@ console.prompt () {
 
 	string_3=$(printf "%s\n" ": ${answer}")
 
-	console_str+=( "${string_2}" "${string_3}" )
+	console_str+=("${string_2}${string_3}")
 }
 
 # highlights #
