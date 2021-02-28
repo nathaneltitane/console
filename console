@@ -79,35 +79,32 @@ marker_no='[ ⨉ ]'
 # prompt #
 
 console.prompt () {
-	[ -z "${1}" ] && return 1
+console_str=()
 
-	prompt="${1}"
-	padding_character="${2}"
-	answer="${3}"
+	[ -z "${1}" ] && exit 1
+	string_1=$(printf "%s" "${1}")
+	console_str+=( "${string_1}" )
+
+	[ $# -lt 2 ] && printf "\n" && return
+
+
+	answer="${2}"
+
+	padding_character="."
+	if [ $# -gt 2 ]
+	then
+		padding_character="${3}"
+	fi
+
 
 	padding_count=79
 	padding_string=$(printf "%0.1s" "${padding_character}"{1..79}})
 
-	# parse input:
-	# typical formatting as "prompt" "padding character" "answer"
-
-	# initialize empty return array:
-	# clears previous content input
-
-	console_rtn=()
-
-	string_1=$(printf "%s" "${prompt}")
-
-	[ -z "${answer}" ] && printf "\n" && break
-
 	string_2=$(printf "%*.*s" 0 $((padding_count - ${#prompt} - ${#answer} )) "$padding_string")
+
 	string_3=$(printf "%s\n" ": ${answer}")
 
-	# return values as padded prompt string
-
-	console_rtn+=("${string_1}${string_2}${string_3}")
-
-	return 0
+	console_str+=( "${string_2}" "${string_3}" )
 }
 
 # highlights #
