@@ -88,7 +88,7 @@ console.prompt () {
 
 	# set defaults
 
-	padding_character="."
+	padding_character="/"
 	padding_count="79"
 
 	[ -z "${1}" ] && return 1
