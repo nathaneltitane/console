@@ -91,7 +91,7 @@ console.prompt () {
         # set padding line:
         # 80 columns width - standard
 
-        padding="--------------------------------------------------------------------------------"
+        padding="------------------------------------------------------------------------------"
         padding_character="/"
 
         # verify arguments
