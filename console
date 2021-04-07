@@ -492,8 +492,10 @@ console.input () {
 				break
 			fi
 		done
-
+		
+		value=${label,}
 		console_rtn+=("${value}=${input}")
+
 	done
 }
 
