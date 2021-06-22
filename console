@@ -397,7 +397,7 @@ console.directory () {
 
 		# create directory and set permissions
 
-		[ ! -d "${path}"/"${directory}" ] && mkdir -p "${path}"/"${directory}"
+		[ ! -d "${path}"/"${directory}" ] && mkdir -p "${path}"/"${directory}" || :
 
 		# set ownership
 
