@@ -76,6 +76,8 @@ marker_usr='[ • ]'
 marker_yes='[ ✓ ]'
 marker_no='[ ⨉ ]'
 
+marker_clr='     '
+
 # prompt #
 
 console.prompt () {
@@ -308,6 +310,13 @@ console.ipt () {
 	value="${console_str[@]}"
 
 	echo -n "${magenta}${marker_add} ${value}${reset}"
+}
+
+console.clr () {
+	console.prompt "$@"
+	value="${console_str[@]}"
+
+	echo -n "${marker_clr} ${value}"
 }
 
 # triggers #
