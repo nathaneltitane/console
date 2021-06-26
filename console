@@ -316,7 +316,7 @@ console.clr () {
 	console.prompt "$@"
 	value="${console_str[@]}"
 
-	echo -n "${marker_clr} ${value}"
+	echo -e "${marker_clr} ${value}"
 }
 
 # triggers #
